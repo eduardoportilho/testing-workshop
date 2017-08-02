@@ -11,7 +11,7 @@
   <script>
 // adds two input values together
 function addInputValues(a, b) {
-  return a + b
+  return Number(a) + Number(b)
 }
 
 const form = document.body.querySelector('form')
@@ -31,6 +31,11 @@ form.addEventListener('submit', e => {
 // const result = addInputValues('3', '4')
 // If the result is not the sum of those numbers (ie 7),
 // then throw an error!
+
+const result = addInputValues('3', '4')
+if (result !== 7) {
+  throw new Error(`Expected result to be 7, but was ${result}`)
+}
 
 // Once you've finished your test, check your browser's console
 // and be sure the error is thrown.
