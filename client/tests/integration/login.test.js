@@ -34,8 +34,7 @@ import Login from '../../src/screens/login'
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=Testing&e=Client%20Integration&em=
-*/
+http://ws.kcd.im/?ws=Testing&e=Client%20Integration&em=eduardo.portilho@gmail.com*/
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
   expect(true).toBe(submitted)

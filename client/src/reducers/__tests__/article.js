@@ -18,8 +18,7 @@ test('non-matching type', () => {
 
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=Testing&e=Client%20Unit%20Redux&em=
-*/
+http://ws.kcd.im/?ws=Testing&e=Client%20Unit%20Redux&em=eduardo.portilho@gmail.com*/
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
   expect(true).toBe(submitted)
