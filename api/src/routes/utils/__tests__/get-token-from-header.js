@@ -15,13 +15,24 @@
 // tests to ensure that that use case is always supported.
 import getTokenFromHeader from '../get-token-from-header'
 
-test('this is the title of your test', () => {
-  // this is where you put your test code. Write code that will
-  // throw an error if getTokenFromHeader has a bug. The `expect`
-  // global is a utility that makes writting such assertions easier,
-  // but you can do it however you like.
+test('return null if req headers doesnt have authorization field', () => {
+  const req = getReq()
+  expect(getTokenFromHeader(req)).toBe(null)
 })
 
+test('return null if authorization doesnt start with `Token`', () => {
+  const req = getReq('testtoken')
+  expect(getTokenFromHeader(req)).toBe(null)
+})
+
+test('return authorization token', () => {
+  const req = getReq('Token testtoken')
+  expect(getTokenFromHeader(req)).toBe('testtoken')
+})
+
+function getReq(authorization) {
+  return {headers: {authorization: authorization}}
+}
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
 // 1. Copy the URL below into your browser and fill out the form
@@ -30,8 +41,8 @@ test('this is the title of your test', () => {
 // 4. And you're all done!
 /*
 http://ws.kcd.im/?ws=Testing&e=API%20Unit&em=eduardo.portilho@gmail.com*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true
   expect(true).toBe(submitted)
 })
 ////////////////////////////////
