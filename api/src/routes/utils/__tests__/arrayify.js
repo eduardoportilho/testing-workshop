@@ -18,7 +18,19 @@
 // write code to make that test pass. Then refactor your code to clean
 // it up if needed. Then continue the cycle until you cover all use cases.
 import arrayify from '../arrayify'
+describe('arrayify', () => {
+  test('returns empty array if no args', () => {
+    expect(arrayify()).toEqual([])
+  })
 
+  test('returns an array with arg', () => {
+    expect(arrayify('test')).toEqual(['test'])
+  })
+
+  test('returns arg if it is an array', () => {
+    expect(arrayify(['test'])).toEqual(['test'])
+  })
+})
 
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
@@ -28,8 +40,8 @@ import arrayify from '../arrayify'
 // 4. And you're all done!
 /*
 http://ws.kcd.im/?ws=Testing&e=TDD&em=eduardo.portilho@gmail.com*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true
   expect(true).toBe(submitted)
 })
 ////////////////////////////////
