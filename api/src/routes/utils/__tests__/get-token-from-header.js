@@ -14,20 +14,22 @@
 // how it's intended to be used. Write at least two unit
 // tests to ensure that that use case is always supported.
 import getTokenFromHeader from '../get-token-from-header'
+describe('getTokenFromHeader', () => {
+  test('returns null if req headers doesn`t have authorization field', () => {
+    const req = {headers: {}}
+    expect(getTokenFromHeader(req)).toBe(null)
+  })
 
-test('return null if req headers doesnt have authorization field', () => {
-  const req = getReq()
-  expect(getTokenFromHeader(req)).toBe(null)
-})
+  test('returns null if authorization doesnt start with `Token`', () => {
+    const req = getReq('test.token.value')
+    expect(getTokenFromHeader(req)).toBe(null)
+  })
 
-test('return null if authorization doesnt start with `Token`', () => {
-  const req = getReq('testtoken')
-  expect(getTokenFromHeader(req)).toBe(null)
-})
-
-test('return authorization token', () => {
-  const req = getReq('Token testtoken')
-  expect(getTokenFromHeader(req)).toBe('testtoken')
+  test('returns authorization token', () => {
+    const token = 'test.token.value'
+    const req = getReq(`Token ${token}`)
+    expect(getTokenFromHeader(req)).toBe(token)
+  })
 })
 
 function getReq(authorization) {
