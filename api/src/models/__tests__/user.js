@@ -13,13 +13,15 @@ import {getUserConstructor, generateUser} from './helpers/utils'
 // totally fine (the client will handle the default)
 // so don't worry about checking that case.
 
-test('can generate profile JSON with image', () => {
-  const image = 'test-image'
-  const user = generateUser({
-    image: image
-  })
+test('can generate profile JSON with correct properties', () => {
+  const userOverrides = {
+    image: 'test-image',
+    username: 'bob',
+    bio: 'test-bio',
+  }
+  const user = generateUser(userOverrides)
   const json = user.toProfileJSONFor()
-  expect(json.image).toBe(image)
+  expect(json).toMatchObject(userOverrides)
 })
 
 //////// Elaboration & Feedback /////////
@@ -30,8 +32,8 @@ test('can generate profile JSON with image', () => {
 // 4. And you're all done!
 /*
 http://ws.kcd.im/?ws=Testing&e=Fix%20Bugs&em=eduardo.portilho@gmail.com*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(true).toBe(submitted)
 })
 ////////////////////////////////
