@@ -1,3 +1,4 @@
+// http://localhost:3000/api/articles
 // api/src/routes/api/articles.js
 import express from 'express'
 import mongoose from 'mongoose'

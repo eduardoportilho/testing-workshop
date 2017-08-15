@@ -34,8 +34,40 @@ const api = axios.create({
 // just a handy utility for some of our promise-based code
 // you might consider making something similar for the articles
 // stuff
+
+// npm start mongo
+// npm start api.integration
+
 const getUser = res => res.data.user
 
+let server
+
+beforeAll(async () => {
+  server = await startServer()
+})
+
+afterAll(done => {
+  server.close(done)
+})
+
+describe('unauthorized', () => {
+  test('limit on 20 by default', async () => {
+    const articles = await api.get('articles').then(r => r.data.articles)
+    expect(articles).toHaveLength(20)
+  })
+
+  test('limit on 10 articles', async () => {
+    const limit = 10
+    const articles = await api.get(`articles?limit=${limit}`).then(r => r.data.articles)
+    expect(articles).toHaveLength(limit)
+  })
+
+  test('offset articles', async () => { 
+    const first5articles = await api.get('articles?limit=5').then(r => r.data.articles)
+    const fifthArticle = await api.get('articles?offset=4&limit=1').then(r => r.data.articles)
+    expect(fifthArticle[0]).toEqual(first5articles[4])
+  })
+})
 //////////////////////
 // 👋 Put your tests here
 ///////////////////////
